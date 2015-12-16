@@ -60,6 +60,9 @@ class TableCleanerCommand(table_commons.TextCommand):
         self.align_to_middle = (self.view.settings()
                                     .get('table_cleaner_align_to_middle',
                                          False))
+        self.align_right_numeric = (self.view.settings()
+                                        .get('table_cleaner_align_right_numeric',
+                                             False))
         self.delimiter_spaces = (self.view.settings()
                                      .get('table_cleaner_delimiter_spaces', 1))
 
@@ -121,6 +124,7 @@ class TableCleanerCommand(table_commons.TextCommand):
     # Perform the alignment
     def align(self, lines, orig_lines, front_whites):
         lines = self.split_lines(lines, self.SEPARATOR)
+        is_numeric = False
 
         # Find the sizes of the table
         rows_size = len(lines)
@@ -138,7 +142,25 @@ class TableCleanerCommand(table_commons.TextCommand):
 
                 diff = max_len - len(cell)
 
-                if self.align_to_middle:
+                if self.align_right_numeric:
+                    is_numeric = (cell.replace('$', '')
+                                      .replace('-', '')
+                                      .replace(',', '')
+                                      .replace('.', '')
+                                      .isdigit())
+
+                if is_numeric:
+                    if col == 0:
+                        cell = ((" " * diff) + cell +
+                                self.delimiter_spaces * " ")
+
+                        if cell == " ":
+                            cell = ""
+                    else:
+                        cell = (" " + (" " * diff) + cell +
+                                self.delimiter_spaces * " ")
+
+                elif self.align_to_middle:
                     # Determine the number of characters that need to be
                     # inserted to left and to right
                     l_diff = diff // 2

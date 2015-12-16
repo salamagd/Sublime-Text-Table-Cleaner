@@ -6,6 +6,9 @@
   // aligned to left)
   "table_cleaner_align_to_middle": false,
 
+  // Align the text of each cell containing only numeric characters to the right
+  "table_cleaner_align_right_numeric": false,
+
   // The number of whitespaces between the text of a cell and the delimiters
   "table_cleaner_delimiter_spaces": 1,
 

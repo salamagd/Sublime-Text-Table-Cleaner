@@ -43,6 +43,7 @@ Align a table pasted from another source (e.g. a website).
 These settings can be found in Base File.sublime-settings
 - **table_cleaner_delimiters** - Delimiters between two cells of the table - default: **["|", "&", "\\\\"]**
 - **table_cleaner_align_to_middle** - Align the text of each cell to middle (if set to false, the text will be aligned to left) - default: **false**
+- **table_cleaner_align_right_numeric** - Align the text of each cell containing only numeric characters to the right - default: **false**
 - **table_cleaner_delimiters_white_spaces** - The number of whitespaces between the text of a cell and the delimiters - default: **1**
 - **table_import_separator** - The separator inserted when formatting a table imported - default: **"|"**
 - **table_import_sorround_with_separator** - Append a separator at the beginning and the end of each line when importing a table - default: **true**
