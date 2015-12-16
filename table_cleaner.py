@@ -7,7 +7,7 @@ import copy
 class TableCleanerCommand(table_commons.TextCommand):
     # Default separator, all the recognised separators being replaced with this
     # one, before aligning the tables, acting as an intermediate.
-    SEPARATOR = "&"
+    SEPARATOR = chr(7)
 
     def run(self, edit):
         self.edit = edit
